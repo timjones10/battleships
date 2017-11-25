@@ -13,8 +13,11 @@ class Board
     create_grid(cell)
   end
 
-  # def receive_ship(ship, coordinates, direction)
-
+  def cell_coordinates(size, stern_cell, direction)
+    coordinates = []
+    size.times {coordinates.push(stern_cell)}
+    coordinates.each_with_index.map {|x,i| [x.first, x.last + (i)]}
+  end
 
   private
 

@@ -24,11 +24,11 @@ describe 'board' do
     expect(board.grid[0][0]).to be_instance_of(Cell)
   end
 
-  # it 'can receive a ship' do
-  #   ship = Ship.new(:carrier)
-  #   board.receive_ship(ship, [0,0], 'east')
-  #   expect(board.grid[0][0].content).to eq :ship
-  # end
+  it 'generates cell coordinates for a ship from ship_length, coordinates and direction' do
+    board.cell_coordinates(5, [0,0], 'east')
+  end
+
+
 
 
 end
