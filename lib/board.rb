@@ -13,6 +13,8 @@ class Board
     create_grid(cell)
   end
 
+  # def receive_ship(ship, coordinates, direction)
+
 
   private
 

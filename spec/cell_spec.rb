@@ -8,4 +8,9 @@ describe 'cell' do
     expect(cell.content).to eq(:sea)
   end
 
+  it 'it\'s content value can be changed' do
+    cell.content = :ship
+    expect(cell.content).to eq (:ship)
+  end
+
 end
