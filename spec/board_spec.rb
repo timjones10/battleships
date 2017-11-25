@@ -2,8 +2,7 @@ require 'board'
 require 'cell'
 
 describe 'board' do
-    side_length = 10
-    board = Board.new
+    board = Board.new(Cell)
 
   it 'is initialized with a grid property set to an empty array' do
     expect(board.grid).to be_instance_of(Array)
@@ -19,6 +18,10 @@ describe 'board' do
 
   it 'is initialized with a cell which is default set to a cell object' do
     expect(board.cell).to be_instance_of(Cell)
+  end
+
+  it 'adds cells to the nested arrays within grid according to the side length' do
+    expect(board.grid[0][0]).to be_instance_of(Cell)
   end
 
 end
