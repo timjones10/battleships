@@ -12,4 +12,8 @@ describe 'board' do
     expect(board.length).not_to be nil
   end
 
+  it 'generates nested arrays within the Grid array dependent on side_length' do
+    expect(board.grid.length).to eq(board.length)
+  end
+
 end
