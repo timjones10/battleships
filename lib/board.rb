@@ -2,11 +2,12 @@ class Board
 
   DEFAULT_SIDE_LENGTH = 10
 
-  attr_reader :grid, :length
+  attr_reader :grid, :length, :cell
 
-  def initialize(side_length = DEFAULT_SIDE_LENGTH)
+  def initialize(cell = Cell.new)
     @grid = []
-    @length = side_length
+    @length = DEFAULT_SIDE_LENGTH
+    @cell = cell
     create_grid
   end
 
