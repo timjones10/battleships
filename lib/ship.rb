@@ -1,16 +1,18 @@
 class Ship
 
-attr_reader :type, :size, :hit_count
+attr_reader :type, :size, :hit_count, :sunk
 
   def initialize(type)
     @type = type
     @size
     @hit_count = 0
+    @sunk = false
     ship_size(type)
   end
 
   def hit
     @hit_count += 1
+    @sunk = true if hit_count == size
   end
 
   private
