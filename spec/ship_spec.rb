@@ -26,4 +26,10 @@ describe 'ship' do
     expect(ship.coords).to be_instance_of(Array)
   end
 
+  it 'has a location which can be updated once it has been place on the board' do
+    ship = Ship.new(:minesweeper)
+    ship.update_coords([[0,0]])
+    expect(ship.coords.length).to eq 1
+  end
+
 end

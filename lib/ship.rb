@@ -16,12 +16,15 @@ attr_reader :type, :size, :hit_count, :sunk, :coords
     @sunk = true if hit_count == size
   end
 
+  def update_coords(coords)
+    @coords = coords
+  end
+
   private
 
   def ship_size(type)
     battleships = {:carrier => 5, :destroyer => 4, :gunboat => 3, :submarine => 2, :minesweeper => 1}
     @size = battleships[type]
   end
-
 
 end
