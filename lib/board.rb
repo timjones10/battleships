@@ -14,9 +14,12 @@ class Board
   end
 
   def cell_coordinates(size, stern_cell, direction)
-  return cell_coordinates_east(size, stern_cell, direction) if direction.downcase == 'east'
-  return cell_coordinates_south(size, stern_cell, direction) if direction.downcase == 'south'
-  return cell_coordinates_north(size, stern_cell, direction) if direction.downcase == 'north'
+    coordinates = []
+    size.times {coordinates.push(stern_cell)}
+    return east(coordinates) if direction.downcase == 'east'
+    return south(coordinates) if direction.downcase == 'south'
+    return north(coordinates) if direction.downcase == 'north'
+    return west(coordinates) if direction.downcase == 'west'
   end
 
   private
@@ -27,22 +30,20 @@ class Board
     DEFAULT_SIDE_LENGTH.times {@grid.push(nested_array)}
   end
 
-  def cell_coordinates_east(size, stern_cell, direction)
-    coordinates = []
-    size.times {coordinates.push(stern_cell)}
+  def east(coordinates)
     coordinates.each_with_index.map {|x,i| [x.first, x.last + (i)]}
   end
 
-  def cell_coordinates_south(size, stern_cell, direction)
-    coordinates = []
-    size.times {coordinates.push(stern_cell)}
+  def south(coordinates)
     coordinates.each_with_index.map {|x,i| [x.first + (i), x.last ]}
   end
 
-  def cell_coordinates_north(size, stern_cell, direction)
-    coordinates = []
-    size.times {coordinates.push(stern_cell)}
+  def north(coordinates)
     coordinates.each_with_index.map {|x,i| [x.first - (i), x.last ]}
+  end
+
+  def west(coordinates)
+    coordinates.each_with_index.map {|x,i| [x.first, x.last - (i) ]}
   end
 
 end
