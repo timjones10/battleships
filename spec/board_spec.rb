@@ -57,6 +57,14 @@ describe 'board' do
     board.receive_ship(ship, [0,0], 'east')
     expect(board.grid[0][0].content).to eq :ship
   end
+
+  it 'has a save_ship method which checks the ship and adds it to a ships array' do
+    board = Board.new(Cell)
+    ship = Ship.new(:carrier)
+    board.save_ship(ship)
+    expect(board.ships.length).to eq 1
+  end
+
 end
 
 describe 'board' do

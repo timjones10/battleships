@@ -4,12 +4,13 @@ class Board
 
   DEFAULT_SIDE_LENGTH = 10
 
-  attr_reader :grid, :length, :cell
+  attr_reader :grid, :length, :cell, :ships
 
   def initialize(cell)
     @grid = []
     @length = DEFAULT_SIDE_LENGTH
     @cell = cell.new
+    @ships = []
     create_grid(cell)
   end
 
@@ -18,6 +19,12 @@ class Board
     fail "Outside boundaries" if outside_boundaries(coords) == true
     fail "Overlaps with other ship" if overlap(coords) == true;
     set_cells_to_ship(coords)
+  end
+
+  def save_ship(ship)
+    fail "Five ships have been added" if @ships.length >= 6
+    fail "That type of ship has already been added" if @ships.map {|ship| ship.type}.any? {|x| x == ship.type}
+    @ships.push(ship)
   end
 
   def cell_coordinates(size, stern_cell, direction)
