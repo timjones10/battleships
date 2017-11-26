@@ -32,6 +32,10 @@ describe 'board' do
     expect(board.cell_coordinates(5, [0,0], 'south')).to eq ([[0,0], [1,0], [2,0], [3,0], [4,0]])
   end
 
+  it 'generates cell coordinates for a ship from ship_length, coordinates and direction' do
+    expect(board.cell_coordinates(5, [9,0], 'north')).to eq ([[9,0], [8,0], [7,0], [6,0], [5,0]])
+  end
+
 
 
 

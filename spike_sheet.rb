@@ -22,8 +22,20 @@
 # ]
 
 
+def cell_coordinates_east(size, stern_cell, direction)
   coordinates = []
-  size.times {coordinates.push [0,0]}
-  east = coordinates.each_with_index.map {|x,i| [x.first, x.last + (i)]}
+  size.times {coordinates.push(stern_cell)}
+  coordinates.each_with_index.map {|x,i| [x.first, x.last + (i)]}
+end
 
-p east
+def cell_coordinates_south(size, stern_cell, direction)
+  coordinates = []
+  size.times {coordinates.push(stern_cell)}
+  coordinates.each_with_index.map {|x,i| [x.first + (i), x.last ]}
+end
+
+def cell_coordinates_north(size, stern_cell, direction)
+  coordinates = []
+  size.times {coordinates.push(stern_cell)}
+  coordinates.each_with_index.map {|x,i| [x.first - (i), x.last ]}
+end

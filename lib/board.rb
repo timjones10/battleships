@@ -16,6 +16,7 @@ class Board
   def cell_coordinates(size, stern_cell, direction)
   return cell_coordinates_east(size, stern_cell, direction) if direction.downcase == 'east'
   return cell_coordinates_south(size, stern_cell, direction) if direction.downcase == 'south'
+  return cell_coordinates_north(size, stern_cell, direction) if direction.downcase == 'north'
   end
 
   private
@@ -36,6 +37,12 @@ class Board
     coordinates = []
     size.times {coordinates.push(stern_cell)}
     coordinates.each_with_index.map {|x,i| [x.first + (i), x.last ]}
+  end
+
+  def cell_coordinates_north(size, stern_cell, direction)
+    coordinates = []
+    size.times {coordinates.push(stern_cell)}
+    coordinates.each_with_index.map {|x,i| [x.first - (i), x.last ]}
   end
 
 end
