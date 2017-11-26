@@ -1,5 +1,6 @@
 require 'board'
 require 'cell'
+require 'ship'
 
 describe 'board' do
     board = Board.new(Cell)
@@ -41,12 +42,19 @@ describe 'board' do
   end
 
   it 'has an outside_boundaries? method which determines that a ship does not overlap the board' do
-    expect(board.outside_boundaries?(board.cell_coordinates(5, [0,0], 'west'))).to be true
+    expect(board.outside_boundaries(board.cell_coordinates(5, [0,0], 'west'))).to be true
   end
 
   it 'sets the contents of cells to ship when a ship is placed' do
     board.cell_coordinates(5, [0,0], 'east')
     board.set_cells_to_ship(board.cell_coordinates(5, [0,0], 'east'))
+    expect(board.grid[0][0].content).to eq :ship
+  end
+
+  it 'receives a ship' do
+    board = Board.new(Cell)
+    ship = Ship.new(:carrier)
+    board.receive_ship(ship, [0,0], 'east')
     expect(board.grid[0][0].content).to eq :ship
   end
 end
@@ -55,8 +63,9 @@ describe 'board' do
   let(:cell) {double :cell, content: :ship}
   let(:cell_class){double :cell_class, :new => cell}
 
-  it 'has a cell is sea method which checks that the ship will not overlap another ship' do
+  it 'has an overlap method which checks that the ship will not overlap another ship' do
     board = Board.new(cell_class)
-    expect(board.overlap?(board.cell_coordinates(5, [0,0], 'east'))).to be true
+    puts board.grid[0][0].content
+    expect(board.overlap(board.cell_coordinates(5, [0,0], 'east'))).to be true
   end
 end

@@ -13,6 +13,13 @@ class Board
     create_grid(cell)
   end
 
+  def receive_ship(ship, stern_cell, direction)
+    coords = cell_coordinates(ship.size, stern_cell, direction)
+    fail "Outside boundaries" if outside_boundaries(coords) == true
+    fail "Overlaps with other ship" if overlap(coords) == true;
+    set_cells_to_ship(coords)
+  end
+
   def cell_coordinates(size, stern_cell, direction)
     coordinates = []
     size.times {coordinates.push(stern_cell)}
@@ -22,12 +29,12 @@ class Board
     return west(coordinates) if direction.downcase == 'west'
   end
 
-  def outside_boundaries?(ship_coordinates)
-    ship_coordinates.flatten.any? {|i| i > 0 || i < 9}
+  def outside_boundaries(ship_coordinates)
+    ship_coordinates.flatten.any? {|i| i < 0 || i > 9}
   end
 
-  def overlap?(ship_coordinates)
-    ship_coordinates.map {|coord| @grid[coord.first][coord.last].content}.any? {|content| :ship}
+  def overlap(ship_coordinates)
+    ship_coordinates.map {|coord| @grid[coord.first][coord.last].content}.any? {|x| x == :ship}
   end
 
   def set_cells_to_ship(ship_coordinates)
