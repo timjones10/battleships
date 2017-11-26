@@ -22,6 +22,10 @@ class Board
     return west(coordinates) if direction.downcase == 'west'
   end
 
+  def outside_boundaries?(ship_coordinates)
+    ship_coordinates.flatten.any? {|i| i > 0 || i < 9}
+  end
+
   private
 
   def create_grid(cell)

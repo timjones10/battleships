@@ -39,3 +39,9 @@ def cell_coordinates_north(size, stern_cell, direction)
   size.times {coordinates.push(stern_cell)}
   coordinates.each_with_index.map {|x,i| [x.first - (i), x.last ]}
 end
+
+def cell_coordinates_north(size, stern_cell, direction)
+  coordinates = []
+  size.times {coordinates.push(stern_cell)}
+  coordinates.each_with_index.map {|x,i| [x.first, x.last - (i) ]}
+end

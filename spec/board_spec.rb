@@ -40,5 +40,9 @@ describe 'board' do
     expect(board.cell_coordinates(5, [9,9], 'west')).to eq ([[9,9], [9,8], [9,7], [9,6], [9,5]])
   end
 
+  it 'has an outside_boundaries? method which determines that a ship does not overlap the board' do
+    expect(board.outside_boundaries?(board.cell_coordinates(5, [0,0], 'west'))).to be true
+  end
+
 
 end
