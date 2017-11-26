@@ -61,8 +61,16 @@ describe 'board' do
   it 'has a save_ship method which checks the ship and adds it to a ships array' do
     board = Board.new(Cell)
     ship = Ship.new(:carrier)
-    board.save_ship(ship)
+    coords = [[0,0],[0,1],[0,2],[0,3],[0,4]]
+    board.save_ship(ship, coords)
     expect(board.ships.length).to eq 1
+  end
+
+  it 'the save_ship method requires the ship to update its coords if ship is placed successfully' do
+    board = Board.new(Cell)
+    ship = Ship.new(:carrier)
+    board.receive_ship(ship, [0,0], 'east')
+    expect(board.ships[0].coords).to eq ([[0,0],[0,1],[0,2],[0,3],[0,4]])
   end
 
 end

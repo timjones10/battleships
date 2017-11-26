@@ -19,12 +19,14 @@ class Board
     fail "Outside boundaries" if outside_boundaries(coords) == true
     fail "Overlaps with other ship" if overlap(coords) == true;
     set_cells_to_ship(coords)
+    save_ship(ship, coords)
   end
 
-  def save_ship(ship)
+  def save_ship(ship, coords)
     fail "Five ships have been added" if @ships.length >= 6
     fail "That type of ship has already been added" if @ships.map {|ship| ship.type}.any? {|x| x == ship.type}
     @ships.push(ship)
+    ship.update_coords(coords)
   end
 
   def cell_coordinates(size, stern_cell, direction)
