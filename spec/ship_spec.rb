@@ -22,4 +22,8 @@ describe 'ship' do
     expect(ship.sunk).to eq true
   end
 
+  it 'is initialized with a blank array to store coordinates once it has been placed' do
+    expect(ship.coords).to be_instance_of(Array)
+  end
+
 end

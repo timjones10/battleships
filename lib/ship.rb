@@ -1,12 +1,13 @@
 class Ship
 
-attr_reader :type, :size, :hit_count, :sunk
+attr_reader :type, :size, :hit_count, :sunk, :coords
 
   def initialize(type)
     @type = type
     @size
     @hit_count = 0
     @sunk = false
+    @coords = []
     ship_size(type)
   end
 
