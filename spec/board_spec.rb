@@ -44,6 +44,11 @@ describe 'board' do
     expect(board.outside_boundaries?(board.cell_coordinates(5, [0,0], 'west'))).to be true
   end
 
+  it 'sets the contents of cells to ship when a ship is placed' do
+    board.cell_coordinates(5, [0,0], 'east')
+    board.set_cells_to_ship(board.cell_coordinates(5, [0,0], 'east'))
+    expect(board.grid[0][0].content).to eq :ship
+  end
 end
 
 describe 'board' do
@@ -54,5 +59,4 @@ describe 'board' do
     board = Board.new(cell_class)
     expect(board.overlap?(board.cell_coordinates(5, [0,0], 'east'))).to be true
   end
-
 end

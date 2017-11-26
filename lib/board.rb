@@ -30,6 +30,10 @@ class Board
     ship_coordinates.map {|coord| @grid[coord.first][coord.last].content}.any? {|content| :ship}
   end
 
+  def set_cells_to_ship(ship_coordinates)
+    ship_coordinates.each {|coord| @grid[coord.first][coord.last].content = :ship}
+  end
+
   private
 
   def create_grid(cell)
