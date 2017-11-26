@@ -26,6 +26,10 @@ class Board
     ship_coordinates.flatten.any? {|i| i > 0 || i < 9}
   end
 
+  def overlap?(ship_coordinates)
+    ship_coordinates.map {|coord| @grid[coord.first][coord.last].content}.any? {|content| :ship}
+  end
+
   private
 
   def create_grid(cell)

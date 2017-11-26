@@ -44,5 +44,15 @@ describe 'board' do
     expect(board.outside_boundaries?(board.cell_coordinates(5, [0,0], 'west'))).to be true
   end
 
+end
+
+describe 'board' do
+  let(:cell) {double :cell, content: :ship}
+  let(:cell_class){double :cell_class, :new => cell}
+
+  it 'has a cell is sea method which checks that the ship will not overlap another ship' do
+    board = Board.new(cell_class)
+    expect(board.overlap?(board.cell_coordinates(5, [0,0], 'east'))).to be true
+  end
 
 end
